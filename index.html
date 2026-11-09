@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>PlayNest Printables - Kids Activity & Coloring Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -38,69 +38,70 @@
 
     header {
       background: #FFFFFF;
-      padding: 8px 14px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       z-index: 10;
-      flex-wrap: wrap;
-      gap: 6px;
+      flex-shrink: 0;
     }
 
     .brand-title {
       font-family: 'Fredoka', cursive;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--brand-dark);
     }
 
     .mode-switch {
       display: flex;
-      gap: 6px;
+      gap: 8px;
     }
 
     .mode-btn {
-      border: none;
-      padding: 6px 12px;
+      border: 2px solid #E2E8F0;
+      padding: 6px 14px;
       border-radius: 999px;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 0.9rem;
+      font-family: 'Fredoka', cursive;
+      font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
-      background: #EDF2F7;
+      background: #FFFFFF;
       color: var(--brand-slate);
       transition: all 0.2s;
     }
 
     .mode-btn.active {
+      border-color: var(--brand-sage);
       background: var(--brand-sage);
       color: #1A365D;
     }
 
-    /* Fixed top toolbar for easy access */
     .toolbar-panel {
       background: #FFFFFF;
       border-bottom: 2px solid #EAE0D5;
-      padding: 6px 12px;
+      padding: 8px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      flex-wrap: wrap;
       z-index: 9;
+      flex-shrink: 0;
+      overflow-x: auto;
     }
 
     .tools-group {
       display: flex;
-      gap: 5px;
+      gap: 6px;
+      flex-shrink: 0;
     }
 
     .tool-btn {
       border: 2px solid #CBD5E0;
       background: #FFFFFF;
       border-radius: 10px;
-      padding: 6px 10px;
+      padding: 6px 12px;
       font-size: 0.95rem;
       cursor: pointer;
       display: flex;
@@ -118,19 +119,19 @@
 
     .palette {
       display: flex;
-      gap: 5px;
+      gap: 6px;
       align-items: center;
-      overflow-x: auto;
-      padding: 2px 0;
+      padding: 0 4px;
+      flex-shrink: 0;
     }
 
     .color-swatch {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       cursor: pointer;
       border: 2px solid #FFFFFF;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
       flex-shrink: 0;
       transition: transform 0.15s;
     }
@@ -143,14 +144,15 @@
     .actions-group {
       display: flex;
       gap: 6px;
+      flex-shrink: 0;
     }
 
     .action-btn {
       border: none;
       border-radius: 999px;
-      padding: 5px 12px;
+      padding: 6px 14px;
       font-family: 'Fredoka', cursive;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       background: #EDF2F7;
@@ -165,9 +167,9 @@
     .voice-btn {
       border: none;
       border-radius: 999px;
-      padding: 5px 12px;
+      padding: 6px 14px;
       font-family: 'Fredoka', cursive;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
       background: var(--brand-yellow);
@@ -186,19 +188,20 @@
       background: #FFFDF9;
       border-right: 2px solid #F0E6D8;
       overflow-y: auto;
-      padding: 8px 6px;
+      padding: 10px 8px;
       display: flex;
       flex-direction: column;
       gap: 8px;
+      flex-shrink: 0;
     }
 
     .shelf-item {
       padding: 8px 6px;
       background: #FFFFFF;
       border: 2px solid #E2E8F0;
-      border-radius: 10px;
+      border-radius: 12px;
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 700;
       cursor: pointer;
       display: flex;
@@ -224,7 +227,7 @@
       background: #FAF7F2;
       align-items: center;
       justify-content: center;
-      padding: 8px;
+      padding: 12px;
     }
 
     .canvas-wrapper {
@@ -238,8 +241,8 @@
 
     canvas {
       background: #FFFFFF;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       max-width: 100%;
       max-height: 100%;
     }
@@ -250,25 +253,24 @@
   <header>
     <div class="brand-title">🌱 PlayNest Printables</div>
     <div class="mode-switch">
-      <button class="mode-btn active" id="btn-coloring" onclick="switchCategory('coloring')">🎨 Fruits Coloring</button>
-      <button class="mode-btn" id="btn-busybooks" onclick="switchCategory('busybooks')">📚 6 Busy Books</button>
+      <button class="mode-btn active" id="btn-coloring">🍎 Fruits</button>
+      <button class="mode-btn" id="btn-busybooks">📚 6 Busy Books</button>
     </div>
   </header>
 
-  <!-- Control & Colors Toolbar (Nasa ITAAS na para laging kitang-kita) -->
   <div class="toolbar-panel">
     <div class="tools-group">
-      <button class="tool-btn active" id="tool-bucket" onclick="setTool('bucket')">🪣 Fill</button>
-      <button class="tool-btn" id="tool-brush" onclick="setTool('brush')">🖌️ Draw</button>
-      <button class="tool-btn" id="tool-eraser" onclick="setTool('eraser')">🧼 Erase</button>
+      <button class="tool-btn active" id="tool-bucket">🪣 Fill</button>
+      <button class="tool-btn" id="tool-brush">🖌️ Draw</button>
+      <button class="tool-btn" id="tool-eraser">🧼 Erase</button>
     </div>
 
     <div class="palette" id="palette"></div>
 
     <div class="actions-group">
-      <button class="voice-btn" onclick="speakCurrentItem()">🔊 <span id="item-title">Apple</span></button>
-      <button class="action-btn" onclick="clearCanvas()">🔄 Clear</button>
-      <button class="action-btn primary" onclick="printOrSave()">⬇️ Save</button>
+      <button class="voice-btn" id="btn-voice">🔊 <span id="item-title">Apple</span></button>
+      <button class="action-btn" id="btn-clear">🔄 Clear</button>
+      <button class="action-btn primary" id="btn-save">⬇️ Save</button>
     </div>
   </div>
 
@@ -316,10 +318,22 @@
     const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
     function init() {
-      renderPalette();
-      renderSidebar();
+      setupPalette();
+      setupSidebar();
       loadTemplate();
       setupDrawingEvents();
+      setupControls();
+    }
+
+    function setupControls() {
+      document.getElementById('btn-coloring').onclick = () => switchCategory('coloring');
+      document.getElementById('btn-busybooks').onclick = () => switchCategory('busybooks');
+      document.getElementById('tool-bucket').onclick = () => setTool('bucket');
+      document.getElementById('tool-brush').onclick = () => setTool('brush');
+      document.getElementById('tool-eraser').onclick = () => setTool('eraser');
+      document.getElementById('btn-voice').onclick = speakCurrentItem;
+      document.getElementById('btn-clear').onclick = () => loadTemplate();
+      document.getElementById('btn-save').onclick = printOrSave;
     }
 
     function switchCategory(cat) {
@@ -327,11 +341,11 @@
       document.getElementById('btn-coloring').classList.toggle('active', cat === 'coloring');
       document.getElementById('btn-busybooks').classList.toggle('active', cat === 'busybooks');
       currentItem = cat === 'coloring' ? coloringItems[0] : busyBookItems[0];
-      renderSidebar();
+      setupSidebar();
       loadTemplate();
     }
 
-    function renderSidebar() {
+    function setupSidebar() {
       const list = document.getElementById('items-list');
       list.innerHTML = '';
       const items = currentCategory === 'coloring' ? coloringItems : busyBookItems;
@@ -342,7 +356,7 @@
         div.innerHTML = `<span>${item.icon}</span>${item.title}`;
         div.onclick = () => {
           currentItem = item;
-          renderSidebar();
+          setupSidebar();
           loadTemplate();
         };
         list.appendChild(div);
@@ -350,7 +364,7 @@
       document.getElementById('item-title').textContent = currentItem.title;
     }
 
-    function renderPalette() {
+    function setupPalette() {
       const palette = document.getElementById('palette');
       palette.innerHTML = '';
       colors.forEach(c => {
@@ -360,7 +374,7 @@
         swatch.onclick = () => {
           currentColor = c;
           if (currentTool === 'eraser') setTool('brush');
-          renderPalette();
+          setupPalette();
         };
         palette.appendChild(swatch);
       });
@@ -384,70 +398,54 @@
 
       ctx.beginPath();
 
-      // --- FRUITS ---
       if (currentItem.id === 'apple') {
-        // Apple Body
-        ctx.arc(300, 350, 140, 0, Math.PI * 2);
+        ctx.arc(300, 350, 135, 0, Math.PI * 2);
         ctx.stroke();
-        // Stem
         ctx.beginPath();
-        ctx.moveTo(300, 210);
+        ctx.moveTo(300, 215);
         ctx.quadraticCurveTo(310, 150, 335, 130);
         ctx.stroke();
-        // Leaf
         ctx.beginPath();
-        ctx.ellipse(345, 160, 30, 15, Math.PI / 4, 0, Math.PI * 2);
+        ctx.ellipse(345, 160, 28, 14, Math.PI / 4, 0, Math.PI * 2);
         ctx.stroke();
       } else if (currentItem.id === 'strawberry') {
-        // Strawberry Body
-        ctx.moveTo(210, 260);
+        ctx.moveTo(210, 270);
         ctx.quadraticCurveTo(300, 520, 300, 520);
-        ctx.quadraticCurveTo(390, 260, 300, 240);
-        ctx.quadraticCurveTo(210, 260, 210, 260);
+        ctx.quadraticCurveTo(390, 270, 300, 250);
+        ctx.quadraticCurveTo(210, 270, 210, 270);
         ctx.stroke();
-        // Crown leaves
         ctx.beginPath();
-        ctx.moveTo(300, 240);
-        ctx.lineTo(250, 200);
-        ctx.lineTo(285, 220);
-        ctx.lineTo(300, 175);
-        ctx.lineTo(315, 220);
-        ctx.lineTo(350, 200);
+        ctx.moveTo(300, 250);
+        ctx.lineTo(250, 210);
+        ctx.lineTo(285, 230);
+        ctx.lineTo(300, 185);
+        ctx.lineTo(315, 230);
+        ctx.lineTo(350, 210);
         ctx.closePath();
         ctx.stroke();
       } else if (currentItem.id === 'banana') {
-        // Banana Curve
         ctx.moveTo(170, 270);
         ctx.quadraticCurveTo(310, 220, 430, 370);
         ctx.quadraticCurveTo(300, 470, 170, 270);
         ctx.stroke();
-        // Stem Tip
         ctx.beginPath();
         ctx.moveTo(170, 270);
         ctx.lineTo(150, 260);
         ctx.stroke();
       } else if (currentItem.id === 'grapes') {
-        // Bunch of Grapes
-        const grapePoints = [
-          [260, 250], [300, 250], [340, 250],
-          [280, 300], [320, 300],
-          [300, 350]
-        ];
-        grapePoints.forEach(([x, y]) => {
+        const pts = [[260, 250], [300, 250], [340, 250], [280, 300], [320, 300], [300, 350]];
+        pts.forEach(([x, y]) => {
           ctx.beginPath();
           ctx.arc(x, y, 32, 0, Math.PI * 2);
           ctx.stroke();
         });
-        // Stem
         ctx.beginPath();
         ctx.moveTo(300, 218);
         ctx.lineTo(300, 160);
         ctx.stroke();
       } else if (currentItem.id === 'pineapple') {
-        // Pineapple Oval
         ctx.ellipse(300, 370, 95, 120, 0, 0, Math.PI * 2);
         ctx.stroke();
-        // Spiky Crown Leaves
         ctx.beginPath();
         ctx.moveTo(270, 250);
         ctx.lineTo(245, 170);
@@ -458,5 +456,197 @@
         ctx.lineTo(330, 250);
         ctx.stroke();
       } else if (currentItem.id === 'watermelon') {
-        // Watermelon Slice
         ctx.arc(300, 320, 150, 0.2 * Math.PI, 0.8 * Math.PI);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(300, 320, 125, 0.22 * Math.PI, 0.78 * Math.PI);
+        ctx.stroke();
+      } else if (currentItem.id === 'animals') {
+        ctx.arc(300, 320, 115, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(215, 215, 40, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(385, 215, 40, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(300, 360, 22, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (currentItem.id === 'irobot') {
+        ctx.strokeRect(210, 220, 180, 150);
+        ctx.strokeRect(235, 255, 40, 40);
+        ctx.strokeRect(325, 255, 40, 40);
+        ctx.strokeRect(250, 325, 100, 20);
+        ctx.beginPath();
+        ctx.moveTo(300, 220);
+        ctx.lineTo(300, 160);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(300, 150, 12, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (currentItem.id === 'princess') {
+        ctx.moveTo(190, 290);
+        ctx.lineTo(215, 200);
+        ctx.lineTo(260, 250);
+        ctx.lineTo(300, 170);
+        ctx.lineTo(340, 250);
+        ctx.lineTo(385, 200);
+        ctx.lineTo(410, 290);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(250, 310);
+        ctx.lineTo(180, 500);
+        ctx.lineTo(420, 500);
+        ctx.lineTo(350, 310);
+        ctx.closePath();
+        ctx.stroke();
+      } else if (currentItem.id === 'construction') {
+        ctx.strokeRect(190, 280, 190, 85);
+        ctx.strokeRect(240, 215, 95, 65);
+        ctx.strokeRect(255, 225, 65, 45);
+        ctx.beginPath();
+        ctx.arc(235, 385, 30, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(345, 385, 30, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (currentItem.id === 'dinosaur') {
+        ctx.arc(290, 310, 115, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(375, 230); ctx.lineTo(410, 245); ctx.lineTo(390, 275);
+        ctx.moveTo(400, 290); ctx.lineTo(430, 315); ctx.lineTo(400, 340);
+        ctx.stroke();
+        ctx.strokeRect(220, 420, 45, 65);
+        ctx.strokeRect(315, 420, 45, 65);
+      } else if (currentItem.id === 'mermaid') {
+        ctx.moveTo(300, 190);
+        ctx.quadraticCurveTo(350, 290, 290, 390);
+        ctx.quadraticCurveTo(250, 430, 230, 450);
+        ctx.lineTo(300, 420);
+        ctx.lineTo(370, 460);
+        ctx.quadraticCurveTo(335, 400, 315, 360);
+        ctx.quadraticCurveTo(345, 260, 300, 190);
+        ctx.stroke();
+      }
+
+      ctx.font = "bold 26px Fredoka, Nunito, sans-serif";
+      ctx.fillStyle = "#2D3748";
+      ctx.textAlign = "center";
+      ctx.fillText(currentItem.title.toUpperCase(), 300, 75);
+      document.getElementById('item-title').textContent = currentItem.title;
+    }
+
+    function setupDrawingEvents() {
+      const getPos = (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        return {
+          x: Math.floor((clientX - rect.left) * scaleX),
+          y: Math.floor((clientY - rect.top) * scaleY)
+        };
+      };
+
+      const start = (e) => {
+        const pos = getPos(e);
+        if (currentTool === 'bucket') {
+          floodFill(pos.x, pos.y, hexToRgb(currentColor));
+        } else {
+          isDrawing = true;
+          ctx.beginPath();
+          ctx.moveTo(pos.x, pos.y);
+        }
+      };
+
+      const move = (e) => {
+        if (!isDrawing || currentTool === 'bucket') return;
+        const pos = getPos(e);
+        ctx.lineWidth = currentTool === 'eraser' ? 24 : 10;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = currentTool === 'eraser' ? '#FFFFFF' : currentColor;
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+      };
+
+      const end = () => { isDrawing = false; };
+
+      canvas.addEventListener('mousedown', start);
+      canvas.addEventListener('mousemove', move);
+      window.addEventListener('mouseup', end);
+
+      canvas.addEventListener('touchstart', (e) => { e.preventDefault(); start(e); });
+      canvas.addEventListener('touchmove', (e) => { e.preventDefault(); move(e); });
+      window.addEventListener('touchend', end);
+    }
+
+    function floodFill(startX, startY, fillRGB) {
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imgData.data;
+      const startIndex = (startY * canvas.width + startX) * 4;
+
+      const targetR = data[startIndex];
+      const targetG = data[startIndex + 1];
+      const targetB = data[startIndex + 2];
+
+      if (Math.abs(targetR - fillRGB.r) < 5 && Math.abs(targetG - fillRGB.g) < 5 && Math.abs(targetB - fillRGB.b) < 5) return;
+      if (targetR < 60 && targetG < 60 && targetB < 60) return;
+
+      const match = (idx) => {
+        const r = data[idx], g = data[idx + 1], b = data[idx + 2];
+        return Math.abs(r - targetR) < 35 && Math.abs(g - targetG) < 35 && Math.abs(b - targetB) < 35;
+      };
+
+      const queue = [[startX, startY]];
+      const visited = new Uint8Array(canvas.width * canvas.height);
+
+      while (queue.length > 0) {
+        const [x, y] = queue.pop();
+        const idx = (y * canvas.width + x) * 4;
+
+        if (x < 0 || x >= canvas.width || y < 0 || y >= canvas.height) continue;
+        if (visited[y * canvas.width + x]) continue;
+        visited[y * canvas.width + x] = 1;
+
+        if (match(idx)) {
+          data[idx] = fillRGB.r;
+          data[idx + 1] = fillRGB.g;
+          data[idx + 2] = fillRGB.b;
+          data[idx + 3] = 255;
+
+          queue.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+        }
+      }
+      ctx.putImageData(imgData, 0, 0);
+    }
+
+    function hexToRgb(hex) {
+      const bigint = parseInt(hex.replace('#', ''), 16);
+      return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
+    }
+
+    function speakCurrentItem() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(currentItem.title);
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function printOrSave() {
+      const link = document.createElement('a');
+      link.download = `${currentItem.title.toLowerCase().replace(/\\s+/g, '-')}-playnest.png`;
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
