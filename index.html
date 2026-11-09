@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>PlayNest Printables - Kids Activity & Coloring Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -51,9 +51,6 @@
       font-size: 1.4rem;
       font-weight: 700;
       color: var(--brand-dark);
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
     .mode-switch {
@@ -77,7 +74,6 @@
     .mode-btn.active {
       background: var(--brand-sage);
       color: #1A365D;
-      box-shadow: 0 2px 6px rgba(168,205,181,0.5);
     }
 
     .container {
@@ -87,9 +83,8 @@
       position: relative;
     }
 
-    /* Sidebar Themes/Items Selection */
     .sidebar {
-      width: 140px;
+      width: 150px;
       background: #FFFDF9;
       border-right: 2px solid #F0E6D8;
       overflow-y: auto;
@@ -123,10 +118,8 @@
       border-color: var(--brand-peach);
       background: #FFF2F0;
       transform: scale(1.02);
-      box-shadow: 0 3px 8px rgba(242,185,179,0.3);
     }
 
-    /* Main Board View */
     .board-container {
       flex: 1;
       display: flex;
@@ -143,7 +136,6 @@
       background: #FFFFFF;
       border-bottom: 1px solid #EAE0D5;
       gap: 8px;
-      flex-wrap: wrap;
     }
 
     .voice-btn, .action-btn {
@@ -192,7 +184,6 @@
       max-height: 100%;
     }
 
-    /* Bottom Control Bar */
     .controls {
       background: #FFFFFF;
       border-top: 2px solid #F0E6D8;
@@ -380,41 +371,213 @@
       ctx.strokeStyle = '#2D3748';
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
 
       ctx.beginPath();
+
+      // --- FRUITS COLORING ---
       if (currentItem.id === 'apple') {
-        ctx.arc(300, 330, 140, 0, Math.PI * 2);
+        ctx.arc(300, 340, 140, 0, Math.PI * 2);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(300, 190);
-        ctx.quadraticCurveTo(320, 130, 340, 110);
-        ctx.stroke();
-      } else if (currentItem.id === 'animals') {
-        // Lion / Animal head shape
-        ctx.arc(300, 300, 120, 0, Math.PI * 2);
+        ctx.moveTo(300, 200);
+        ctx.quadraticCurveTo(310, 140, 330, 120);
         ctx.stroke();
         ctx.beginPath();
-        ctx.arc(220, 190, 40, 0, Math.PI * 2);
+        ctx.ellipse(345, 150, 28, 14, Math.PI / 4, 0, Math.PI * 2);
+        ctx.stroke();
+      } else if (currentItem.id === 'strawberry') {
+        ctx.moveTo(220, 240);
+        ctx.quadraticCurveTo(300, 490, 300, 490);
+        ctx.quadraticCurveTo(380, 240, 300, 220);
+        ctx.quadraticCurveTo(220, 240, 220, 240);
         ctx.stroke();
         ctx.beginPath();
-        ctx.arc(380, 190, 40, 0, Math.PI * 2);
+        ctx.moveTo(300, 220);
+        ctx.lineTo(260, 180);
+        ctx.lineTo(290, 200);
+        ctx.lineTo(300, 160);
+        ctx.lineTo(310, 200);
+        ctx.lineTo(340, 180);
+        ctx.closePath();
+        ctx.stroke();
+        // Seeds
+        [[270, 300], [330, 300], [300, 360], [280, 420], [320, 420]].forEach(([x, y]) => {
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+      } else if (currentItem.id === 'banana') {
+        ctx.moveTo(180, 260);
+        ctx.quadraticCurveTo(320, 220, 420, 360);
+        ctx.quadraticCurveTo(300, 440, 180, 260);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(180, 260);
+        ctx.lineTo(165, 250);
+        ctx.stroke();
+      } else if (currentItem.id === 'grapes') {
+        const circles = [
+          [260, 240], [300, 240], [340, 240],
+          [280, 285], [320, 285],
+          [300, 330]
+        ];
+        circles.forEach(([x, y]) => {
+          ctx.beginPath();
+          ctx.arc(x, y, 30, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+        ctx.beginPath();
+        ctx.moveTo(300, 210);
+        ctx.lineTo(300, 160);
+        ctx.stroke();
+      } else if (currentItem.id === 'pineapple') {
+        ctx.ellipse(300, 360, 95, 125, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(270, 240);
+        ctx.lineTo(250, 160);
+        ctx.lineTo(285, 200);
+        ctx.lineTo(300, 140);
+        ctx.lineTo(315, 200);
+        ctx.lineTo(350, 160);
+        ctx.lineTo(330, 240);
+        ctx.stroke();
+        // Diamond grid
+        ctx.beginPath();
+        ctx.moveTo(240, 330); ctx.lineTo(360, 390);
+        ctx.moveTo(240, 390); ctx.lineTo(360, 330);
+        ctx.stroke();
+      } else if (currentItem.id === 'watermelon') {
+        ctx.arc(300, 310, 150, 0.2 * Math.PI, 0.8 * Math.PI);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(300, 310, 125, 0.22 * Math.PI, 0.78 * Math.PI);
+        ctx.stroke();
+        [[270, 380], [300, 400], [330, 380]].forEach(([x, y]) => {
+          ctx.beginPath();
+          ctx.arc(x, y, 5, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      // --- 6 BUSY BOOKS ---
+      else if (currentItem.id === 'animals') {
+        // Lion / Animal Face
+        ctx.arc(300, 300, 110, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(220, 200, 38, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(380, 200, 38, 0, Math.PI * 2);
+        ctx.stroke();
+        // Eyes & Snout
+        ctx.beginPath();
+        ctx.arc(265, 280, 10, 0, Math.PI * 2);
+        ctx.arc(335, 280, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(300, 330, 16, 0, Math.PI * 2);
         ctx.stroke();
       } else if (currentItem.id === 'irobot') {
-        // Robot head & body
-        ctx.strokeRect(200, 180, 200, 160);
-        ctx.strokeRect(230, 220, 40, 40);
-        ctx.strokeRect(330, 220, 40, 40);
-        ctx.strokeRect(250, 300, 100, 20);
+        // Robot Head & Antenna
+        ctx.strokeRect(210, 210, 180, 150);
+        ctx.strokeRect(240, 245, 35, 35);
+        ctx.strokeRect(325, 245, 35, 35);
+        ctx.strokeRect(255, 315, 90, 18);
+        ctx.beginPath();
+        ctx.moveTo(300, 210);
+        ctx.lineTo(300, 160);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(300, 150, 12, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.strokeRect(185, 255, 25, 45);
+        ctx.strokeRect(390, 255, 25, 45);
+      } else if (currentItem.id === 'princess') {
+        // Princess Crown & Gown
+        ctx.moveTo(200, 280);
+        ctx.lineTo(220, 200);
+        ctx.lineTo(260, 240);
+        ctx.lineTo(300, 170);
+        ctx.lineTo(340, 240);
+        ctx.lineTo(380, 200);
+        ctx.lineTo(400, 280);
+        ctx.closePath();
+        ctx.stroke();
+        // Jewels
+        [220, 300, 380].forEach(x => {
+          ctx.beginPath();
+          ctx.arc(x, 260, 8, 0, Math.PI * 2);
+          ctx.stroke();
+        });
+        // Gown outline
+        ctx.beginPath();
+        ctx.moveTo(250, 310);
+        ctx.lineTo(190, 480);
+        ctx.lineTo(410, 480);
+        ctx.lineTo(350, 310);
+        ctx.closePath();
+        ctx.stroke();
+      } else if (currentItem.id === 'construction') {
+        // Bulldozer / Truck
+        ctx.strokeRect(200, 270, 180, 85);
+        ctx.strokeRect(240, 210, 95, 60);
+        // Cabin window
+        ctx.strokeRect(255, 220, 65, 40);
+        // Scoop bucket
+        ctx.beginPath();
+        ctx.moveTo(380, 310);
+        ctx.lineTo(430, 310);
+        ctx.lineTo(440, 370);
+        ctx.lineTo(390, 370);
+        ctx.stroke();
+        // Wheels
+        ctx.beginPath();
+        ctx.arc(245, 375, 30, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(335, 375, 30, 0, Math.PI * 2);
+        ctx.stroke();
       } else if (currentItem.id === 'dinosaur') {
-        // Dino shape
-        ctx.arc(300, 320, 130, 0, Math.PI * 2);
+        // Dino Head & Body
+        ctx.arc(290, 300, 110, 0, Math.PI * 2);
         ctx.stroke();
-        ctx.strokeRect(180, 430, 60, 80);
-        ctx.strokeRect(360, 430, 60, 80);
-      } else {
-        // Activity & Coloring Oval Box
-        ctx.roundRect(140, 160, 320, 280, [30]);
+        // Eye
+        ctx.beginPath();
+        ctx.arc(260, 270, 10, 0, Math.PI * 2);
+        ctx.fill();
+        // Spikes on back
+        ctx.beginPath();
+        ctx.moveTo(370, 220); ctx.lineTo(405, 235); ctx.lineTo(385, 265);
+        ctx.moveTo(395, 280); ctx.lineTo(425, 305); ctx.lineTo(395, 330);
         ctx.stroke();
+        // Feet
+        ctx.strokeRect(220, 400, 45, 65);
+        ctx.strokeRect(315, 400, 45, 65);
+      } else if (currentItem.id === 'mermaid') {
+        // Tail & Fins
+        ctx.moveTo(300, 190);
+        ctx.quadraticCurveTo(350, 290, 290, 380);
+        ctx.quadraticCurveTo(250, 420, 230, 440);
+        ctx.lineTo(300, 410);
+        ctx.lineTo(365, 450);
+        ctx.quadraticCurveTo(335, 390, 315, 350);
+        ctx.quadraticCurveTo(345, 250, 300, 190);
+        ctx.stroke();
+        // Waistband
+        ctx.beginPath();
+        ctx.ellipse(300, 190, 42, 12, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        // Scales
+        [[290, 250], [320, 270], [295, 300], [315, 330]].forEach(([x, y]) => {
+          ctx.beginPath();
+          ctx.arc(x, y, 12, 0, Math.PI);
+          ctx.stroke();
+        });
       }
 
       ctx.font = "bold 26px Fredoka";
@@ -479,7 +642,7 @@
       const targetB = data[startIndex + 2];
 
       if (Math.abs(targetR - fillRGB.r) < 5 && Math.abs(targetG - fillRGB.g) < 5 && Math.abs(targetB - fillRGB.b) < 5) return;
-      if (targetR < 60 && targetG < 60 && targetB < 60) return; // Don't fill black outlines
+      if (targetR < 60 && targetG < 60 && targetB < 60) return;
 
       const match = (idx) => {
         const r = data[idx], g = data[idx + 1], b = data[idx + 2];
