@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>PlayNest Printables - Kids Activity and Coloring App</title>
   <style>
     * {
@@ -11,6 +11,7 @@
       padding: 0;
       user-select: none;
       -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
     body {
       font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif, system-ui;
@@ -19,53 +20,56 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
-      overflow: hidden;
+      overflow-x: hidden;
     }
     header {
       background: #fff;
-      padding: 10px 24px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
       z-index: 10;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 8px;
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
     .brand-icon {
-      font-size: 32px;
+      font-size: 26px;
     }
     .brand h1 {
-      font-size: 24px;
+      font-size: 20px;
       color: #0284c7;
       font-weight: 800;
       line-height: 1;
     }
     .brand span {
-      font-size: 14px;
+      font-size: 13px;
       color: #f97316;
       font-weight: 700;
     }
     .tagline {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 600;
       color: #64748b;
     }
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
     .vip-badge {
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 16px;
+      font-size: 12px;
       font-weight: 800;
       cursor: pointer;
       transition: transform 0.2s;
@@ -83,45 +87,50 @@
     }
     .nav-tabs {
       display: flex;
-      gap: 10px;
+      gap: 6px;
     }
     .tab-btn {
-      padding: 8px 18px;
-      border-radius: 20px;
+      padding: 6px 14px;
+      border-radius: 16px;
       border: 2px solid #e2e8f0;
       background: #fff;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       transition: all 0.2s;
     }
     .tab-btn.active {
       background: #fef08a;
       border-color: #eab308;
       color: #854d0e;
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
+    
+    /* WORKSPACE */
     .main-workspace {
       display: flex;
       flex: 1;
-      padding: 16px;
-      gap: 16px;
-      height: calc(100vh - 72px);
+      padding: 12px;
+      gap: 12px;
+      height: calc(100vh - 65px);
+      overflow: hidden;
     }
-    /* SIDEBAR LEFT */
+
+    /* DESKTOP SIDEBAR LEFT */
     .sidebar-left {
-      width: 175px;
+      width: 170px;
       background: #fff;
       border-radius: 18px;
-      padding: 14px 10px;
+      padding: 12px 10px;
       display: flex;
       flex-direction: column;
       gap: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       overflow-y: auto;
+      flex-shrink: 0;
     }
     .sidebar-title {
       font-size: 14px;
@@ -148,6 +157,7 @@
       cursor: pointer;
       transition: all 0.2s;
       text-align: left;
+      white-space: nowrap;
     }
     .item-btn:hover {
       background: #f1f5f9;
@@ -166,45 +176,51 @@
       font-size: 20px;
     }
     .lock-icon {
-      font-size: 13px;
-      opacity: 0.6;
+      font-size: 12px;
+      opacity: 0.7;
     }
-    /* CANVAS CENTER */
+
+    /* CANVAS CARD */
     .canvas-card {
       flex: 1;
       background: #fff;
-      border-radius: 24px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      border-radius: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
-      padding: 20px;
+      padding: 12px;
     }
     #paintCanvas {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border-radius: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       touch-action: none;
       cursor: crosshair;
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
+      max-width: 600px;
+      max-height: 600px;
+      object-fit: contain;
     }
-    /* SIDEBAR RIGHT */
+
+    /* DESKTOP SIDEBAR RIGHT */
     .sidebar-right {
-      width: 190px;
+      width: 180px;
       background: #fff;
       border-radius: 18px;
-      padding: 14px 12px;
+      padding: 12px 10px;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       overflow-y: auto;
+      flex-shrink: 0;
     }
     .tool-group-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       color: #64748b;
       margin-bottom: 6px;
@@ -220,11 +236,11 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px;
+      padding: 9px;
       border-radius: 12px;
       border: 2px solid #e2e8f0;
       background: #fff;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       color: #334155;
       cursor: pointer;
@@ -242,8 +258,8 @@
       justify-items: center;
     }
     .color-swatch {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       border: 3px solid #fff;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
@@ -251,21 +267,21 @@
       transition: transform 0.2s;
     }
     .color-swatch.active {
-      transform: scale(1.2);
+      transform: scale(1.18);
       border-color: #334155;
     }
     .audio-btn {
       background: #fef3c7;
       border: 2px solid #fde68a;
-      border-radius: 14px;
-      padding: 10px 8px;
+      border-radius: 12px;
+      padding: 8px 6px;
       color: #92400e;
       font-weight: 800;
-      font-size: 12px;
+      font-size: 11px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       cursor: pointer;
       text-align: center;
     }
@@ -273,8 +289,8 @@
       background: #fde68a;
     }
     .action-btn {
-      padding: 10px;
-      border-radius: 14px;
+      padding: 9px;
+      border-radius: 12px;
       border: none;
       font-weight: 800;
       font-size: 13px;
@@ -297,16 +313,11 @@
       background: transparent;
       color: #64748b;
       font-size: 12px;
-      padding: 6px;
-    }
-    .action-btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.05);
+      padding: 4px;
     }
     .btn-clear:hover {
       color: #ef4444;
       text-decoration: underline;
-      transform: none;
     }
 
     /* PASSCODE MODAL */
@@ -314,7 +325,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(4px);
       z-index: 100;
       align-items: center;
@@ -324,27 +335,27 @@
     .modal-box {
       background: #fff;
       border-radius: 24px;
-      padding: 30px;
-      max-width: 420px;
+      padding: 24px;
+      max-width: 400px;
       width: 100%;
       text-align: center;
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       border: 3px solid #e0f2fe;
     }
     .modal-box h2 {
-      font-size: 22px;
+      font-size: 20px;
       color: #0284c7;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .modal-box p {
-      font-size: 14px;
+      font-size: 13px;
       color: #64748b;
-      margin-bottom: 20px;
-      line-height: 1.5;
+      margin-bottom: 16px;
+      line-height: 1.4;
     }
     .passcode-input {
       width: 100%;
-      padding: 12px 16px;
+      padding: 12px;
       border-radius: 12px;
       border: 2px solid #cbd5e1;
       font-size: 18px;
@@ -353,7 +364,7 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       outline: none;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .passcode-input:focus {
       border-color: #0284c7;
@@ -363,31 +374,123 @@
       background: #0284c7;
       color: #fff;
       border: none;
-      padding: 14px;
-      border-radius: 14px;
-      font-size: 16px;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 15px;
       font-weight: 800;
       cursor: pointer;
-      transition: background 0.2s;
-    }
-    .modal-btn-unlock:hover {
-      background: #0369a1;
     }
     .modal-btn-close {
       background: transparent;
       border: none;
       color: #94a3b8;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      margin-top: 12px;
+      margin-top: 10px;
       cursor: pointer;
     }
     .error-msg {
       color: #ef4444;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: none;
+    }
+
+    /* -------------------------------------------------------------
+       MOBILE RESPONSIVE RULES (Phones & Small Tablets)
+    ---------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      body {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+      }
+      header {
+        padding: 8px 12px;
+        position: sticky;
+        top: 0;
+      }
+      .tagline {
+        display: none; /* Hide tagline on phone to prevent title squishing */
+      }
+      .main-workspace {
+        flex-direction: column;
+        height: auto;
+        padding: 8px;
+        gap: 10px;
+        overflow: visible;
+      }
+
+      /* Transform left sidebar into horizontal scrolling pill carousel */
+      .sidebar-left {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 8px;
+        gap: 8px;
+        border-radius: 14px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .sidebar-title {
+        display: none;
+      }
+      .item-btn {
+        padding: 6px 12px;
+        flex-shrink: 0;
+      }
+
+      /* Canvas becomes prominent, centered, and square */
+      .canvas-card {
+        width: 100%;
+        height: 380px; /* Big touch-friendly canvas on phones */
+        padding: 6px;
+        border-radius: 16px;
+      }
+      #paintCanvas {
+        width: 100%;
+        height: 100%;
+        max-width: 360px;
+        max-height: 360px;
+      }
+
+      /* Right sidebar transforms into mobile action toolbar */
+      .sidebar-right {
+        width: 100%;
+        flex-direction: column;
+        padding: 12px;
+        gap: 12px;
+        border-radius: 16px;
+      }
+      .tools-list {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .tool-btn {
+        flex: 1;
+        padding: 8px;
+        font-size: 12px;
+      }
+      .color-palette {
+        display: flex;
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 4px 2px;
+      }
+      .color-swatch {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+      }
+      .action-row {
+        display: flex;
+        gap: 8px;
+      }
+      .action-row .action-btn {
+        flex: 1;
+      }
     }
   </style>
 </head>
@@ -408,13 +511,13 @@
         <button class="tab-btn" id="tabBusy">📚 Busy Books</button>
       </div>
       <div class="vip-badge vip-locked" id="vipBadgeBtn">
-        <span id="vipIcon">🔒</span> <span id="vipText">Unlock VIP</span>
+        <span id="vipIcon">🔒</span> <span id="vipText">VIP</span>
       </div>
     </div>
   </header>
 
   <div class="main-workspace">
-    <!-- LEFT SIDEBAR: FRUITS LIST -->
+    <!-- LEFT SIDEBAR / HORIZONTAL BAR ON MOBILE -->
     <div class="sidebar-left" id="sidebarFruits">
       <div class="sidebar-title">🍎 Fruits</div>
       <button class="item-btn active" data-item="apple"><span class="item-label"><span class="emoji">🍎</span> Apple</span> <span class="lock-icon" style="color:#22c55e;">FREE</span></button>
@@ -430,7 +533,7 @@
       <button class="item-btn" data-item="papaya"><span class="item-label"><span class="emoji">🍈</span> Papaya</span> <span class="lock-icon">🔒</span></button>
     </div>
 
-    <!-- LEFT SIDEBAR: BUSY BOOKS LIST -->
+    <!-- BUSY BOOKS SIDEBAR -->
     <div class="sidebar-left" id="sidebarBusy" style="display: none;">
       <div class="sidebar-title">📚 Activities</div>
       <button class="item-btn" data-item="princess"><span class="item-label"><span class="emoji">👑</span> Princess</span> <span class="lock-icon">🔒</span></button>
@@ -445,7 +548,7 @@
       <canvas id="paintCanvas" width="600" height="600"></canvas>
     </div>
 
-    <!-- RIGHT SIDEBAR: TOOLS & CONTROLS -->
+    <!-- RIGHT CONTROLS / BOTTOM TOOLBAR ON MOBILE -->
     <div class="sidebar-right">
       <div>
         <div class="tool-group-title">Tools</div>
@@ -472,12 +575,14 @@
       </div>
 
       <button class="audio-btn" id="audioBtn">
-        <span style="font-size: 18px;">🔊</span>
-        <span>Hear the word:<br><strong id="currentLabel">Apple</strong></span>
+        <span style="font-size: 16px;">🔊</span>
+        <span>Hear the word: <strong id="currentLabel">Apple</strong></span>
       </button>
 
-      <button class="action-btn btn-save" id="btnSave">⬇️ Save picture</button>
-      <button class="action-btn btn-print" id="btnPrint">🖨️ Print</button>
+      <div class="action-row" style="display:flex; gap:8px;">
+        <button class="action-btn btn-save" id="btnSave" style="flex:1;">⬇️ Save</button>
+        <button class="action-btn btn-print" id="btnPrint" style="flex:1;">🖨️ Print</button>
+      </div>
       <button class="action-btn btn-clear" id="btnClear">↺ Clear coloring</button>
     </div>
   </div>
@@ -485,9 +590,9 @@
   <!-- PASSCODE UNLOCK MODAL -->
   <div class="modal-backdrop" id="unlockModal">
     <div class="modal-box">
-      <div style="font-size: 48px; margin-bottom: 10px;">🔐✨</div>
+      <div style="font-size: 44px; margin-bottom: 8px;">🔐✨</div>
       <h2>Unlock PlayNest VIP Access</h2>
-      <p>Ilagay ang iyong <strong>Passcode</strong> mula sa iyong Raket.ph purchase confirmation para ma-unlock ang lahat ng Fruits at Busy Book activities!</p>
+      <p>Ilagay ang iyong <strong>Passcode</strong> mula sa iyong Raket.ph purchase confirmation para ma-unlock ang lahat ng activities!</p>
       <div class="error-msg" id="passcodeError">Maling passcode. Pakisubukang muli!</div>
       <input type="text" id="passcodeInput" class="passcode-input" placeholder="PASSCODE" maxlength="20" autocomplete="off" />
       <button class="modal-btn-unlock" id="btnSubmitPasscode">Unlock All Now 🎉</button>
@@ -496,7 +601,6 @@
   </div>
 
   <script>
-    // SECRET PASSCODE (Ito ang ibibigay mo sa bumili sa Raket.ph!)
     const SECRET_PASSCODE = "PLAYNEST";
 
     const canvas = document.getElementById('paintCanvas');
@@ -523,15 +627,14 @@
       if (isUnlocked) {
         vipBadgeBtn.className = 'vip-badge vip-unlocked';
         vipIcon.textContent = '🌟';
-        vipText.textContent = 'VIP Full Access';
-        // Remove lock icons
+        vipText.textContent = 'VIP';
         document.querySelectorAll('.lock-icon').forEach(el => {
           el.style.display = 'none';
         });
       } else {
         vipBadgeBtn.className = 'vip-badge vip-locked';
         vipIcon.textContent = '🔒';
-        vipText.textContent = 'Unlock VIP';
+        vipText.textContent = 'Unlock';
       }
     }
 
@@ -566,7 +669,6 @@
       }
     }
 
-    // DRAWINGS CATALOG
     const catalog = {
       // --- FRUITS ---
       apple: {
@@ -815,7 +917,6 @@
       item.draw(ctx);
     }
 
-    // Tab buttons
     const tabColoring = document.getElementById('tabColoring');
     const tabBusy = document.getElementById('tabBusy');
 
@@ -848,12 +949,10 @@
       activeBusyBtn.click();
     });
 
-    // Item selection with LOCK GATE
     document.querySelectorAll('.item-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const itemKey = btn.getAttribute('data-item');
 
-        // Apple is always free. Everything else requires unlock.
         if (itemKey !== 'apple' && !isUnlocked) {
           unlockModal.style.display = 'flex';
           passcodeInput.value = '';
@@ -869,7 +968,6 @@
       });
     });
 
-    // Tools
     const btnDraw = document.getElementById('btnDraw');
     const btnFill = document.getElementById('btnFill');
     const btnErase = document.getElementById('btnErase');
@@ -884,7 +982,6 @@
     btnFill.addEventListener('click', () => setActiveTool(btnFill, 'fill'));
     btnErase.addEventListener('click', () => setActiveTool(btnErase, 'erase'));
 
-    // Colors
     document.querySelectorAll('.color-swatch').forEach(swatch => {
       swatch.addEventListener('click', () => {
         document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
@@ -894,7 +991,6 @@
       });
     });
 
-    // Drawing
     function getCanvasCoords(e) {
       const rect = canvas.getBoundingClientRect();
       const scaleX = canvas.width / rect.width;
