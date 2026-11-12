@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>PlayNest Printables - Kids Activity, ABC & Coloring App</title>
+  <title>PlayNest Printables - Kids Activity, ABC, Tracing & Coloring App</title>
   <style>
     * {
       box-sizing: border-box;
@@ -171,9 +171,7 @@
       text-align: left;
       white-space: nowrap;
     }
-    .item-btn:hover {
-      background: #f1f5f9;
-    }
+    .item-btn:hover { background: #f1f5f9; }
     .item-btn.active {
       background: #e0f2fe;
       border-color: #38bdf8;
@@ -184,13 +182,8 @@
       align-items: center;
       gap: 8px;
     }
-    .item-btn .emoji {
-      font-size: 20px;
-    }
-    .lock-icon {
-      font-size: 12px;
-      opacity: 0.7;
-    }
+    .item-btn .emoji { font-size: 20px; }
+    .lock-icon { font-size: 12px; opacity: 0.7; }
 
     /* CANVAS CARD */
     .canvas-card {
@@ -297,9 +290,7 @@
       cursor: pointer;
       text-align: center;
     }
-    .audio-btn:hover {
-      background: #fde68a;
-    }
+    .audio-btn:hover { background: #fde68a; }
     .action-btn {
       padding: 9px;
       border-radius: 12px;
@@ -319,7 +310,7 @@
     .btn-clear:hover { color: #ef4444; text-decoration: underline; }
 
     /* =======================================================
-       LEARNING GAMES & DASHBOARD VIEWS
+       LEARNING GAMES, TRACING & DASHBOARD VIEWS
     ======================================================= */
     .learning-container {
       display: none;
@@ -337,18 +328,9 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.06);
       text-align: center;
     }
-    .section-header {
-      margin-bottom: 16px;
-    }
-    .section-header h2 {
-      font-size: 24px;
-      color: #0284c7;
-      margin-bottom: 4px;
-    }
-    .section-header p {
-      font-size: 14px;
-      color: #64748b;
-    }
+    .section-header { margin-bottom: 16px; }
+    .section-header h2 { font-size: 24px; color: #0284c7; margin-bottom: 4px; }
+    .section-header p { font-size: 14px; color: #64748b; }
 
     /* ABC ADVENTURE GRID */
     .abc-showcase {
@@ -363,24 +345,10 @@
       flex-wrap: wrap;
       border: 3px solid #bae6fd;
     }
-    .abc-big-letter {
-      font-size: 64px;
-      font-weight: 900;
-      color: #0284c7;
-      line-height: 1;
-    }
-    .abc-big-emoji {
-      font-size: 64px;
-    }
-    .abc-word-info h3 {
-      font-size: 26px;
-      color: #f97316;
-    }
-    .abc-word-info p {
-      font-size: 14px;
-      color: #475569;
-      font-weight: 700;
-    }
+    .abc-big-letter { font-size: 64px; font-weight: 900; color: #0284c7; line-height: 1; }
+    .abc-big-emoji { font-size: 64px; }
+    .abc-word-info h3 { font-size: 26px; color: #f97316; }
+    .abc-word-info p { font-size: 14px; color: #475569; font-weight: 700; }
     .abc-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
@@ -404,23 +372,79 @@
       border-color: #eab308;
       transform: translateY(-2px);
     }
-    .abc-tile.learned {
-      border-color: #22c55e;
-      background: #f0fdf4;
+    .abc-tile.learned { border-color: #22c55e; background: #f0fdf4; }
+    .abc-tile .tile-letter { font-size: 22px; font-weight: 900; color: #0284c7; }
+    .abc-tile .tile-emoji { font-size: 24px; }
+    .abc-tile .tile-lock { position: absolute; top: 4px; right: 6px; font-size: 11px; }
+
+    /* LETTER TRACING WORKSPACE */
+    .trace-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
     }
-    .abc-tile .tile-letter {
-      font-size: 22px;
+    .trace-letter-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      max-width: 100%;
+      padding: 6px 4px;
+    }
+    .trace-pill {
+      padding: 8px 14px;
+      border-radius: 14px;
+      border: 2px solid #cbd5e1;
+      background: #f8fafc;
+      font-size: 16px;
       font-weight: 900;
       color: #0284c7;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
-    .abc-tile .tile-emoji {
-      font-size: 24px;
+    .trace-pill.active {
+      background: #0284c7;
+      border-color: #0369a1;
+      color: #fff;
+      transform: scale(1.06);
     }
-    .abc-tile .tile-lock {
-      position: absolute;
-      top: 4px;
-      right: 6px;
-      font-size: 11px;
+    .trace-canvas-wrap {
+      background: #fffbeb;
+      border: 4px dashed #f59e0b;
+      border-radius: 22px;
+      padding: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+    #traceCanvas {
+      background: #ffffff;
+      border-radius: 16px;
+      touch-action: none;
+      cursor: crosshair;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .trace-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .trace-swatch {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+    .trace-swatch.active {
+      transform: scale(1.2);
+      border-color: #1e293b;
     }
 
     /* BUBBLE POP GAME */
@@ -479,14 +503,8 @@
       cursor: pointer;
       transition: transform 0.15s, opacity 0.2s;
     }
-    .bubble-btn:hover {
-      transform: scale(1.1);
-    }
-    .bubble-btn.popped {
-      transform: scale(0);
-      opacity: 0;
-      pointer-events: none;
-    }
+    .bubble-btn:hover { transform: scale(1.1); }
+    .bubble-btn.popped { transform: scale(0); opacity: 0; pointer-events: none; }
     .bubble-btn.shake {
       animation: shakeAnim 0.35s;
       background: radial-gradient(circle at 30% 30%, #ffffff, #fca5a5);
@@ -505,12 +523,7 @@
       margin: 20px auto;
       max-width: 500px;
     }
-    .match-col {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex: 1;
-    }
+    .match-col { display: flex; flex-direction: column; gap: 12px; flex: 1; }
     .match-card {
       padding: 16px;
       border-radius: 18px;
@@ -521,18 +534,8 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .match-card.selected {
-      background: #fef08a;
-      border-color: #eab308;
-      transform: scale(1.05);
-    }
-    .match-card.matched {
-      background: #dcfce7;
-      border-color: #22c55e;
-      color: #15803d;
-      cursor: default;
-      opacity: 0.85;
-    }
+    .match-card.selected { background: #fef08a; border-color: #eab308; transform: scale(1.05); }
+    .match-card.matched { background: #dcfce7; border-color: #22c55e; color: #15803d; cursor: default; opacity: 0.85; }
 
     /* PROGRESS DASHBOARD */
     .stats-grid {
@@ -541,35 +544,11 @@
       gap: 14px;
       margin-bottom: 20px;
     }
-    .stat-box {
-      background: #f8fafc;
-      border: 2px solid #e2e8f0;
-      border-radius: 18px;
-      padding: 16px;
-    }
-    .stat-box .stat-num {
-      font-size: 32px;
-      font-weight: 900;
-      color: #0284c7;
-    }
-    .stat-box .stat-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: #64748b;
-    }
-    .progress-bar-wrap {
-      background: #e2e8f0;
-      height: 18px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 10px 0 18px;
-    }
-    .progress-bar-fill {
-      background: linear-gradient(90deg, #22c55e, #0284c7);
-      height: 100%;
-      width: 0%;
-      transition: width 0.4s ease;
-    }
+    .stat-box { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 18px; padding: 16px; }
+    .stat-box .stat-num { font-size: 32px; font-weight: 900; color: #0284c7; }
+    .stat-box .stat-label { font-size: 13px; font-weight: 700; color: #64748b; }
+    .progress-bar-wrap { background: #e2e8f0; height: 18px; border-radius: 12px; overflow: hidden; margin: 10px 0 18px; }
+    .progress-bar-fill { background: linear-gradient(90deg, #22c55e, #0284c7); height: 100%; width: 0%; transition: width 0.4s ease; }
 
     /* PASSCODE MODAL */
     .modal-backdrop {
@@ -593,17 +572,8 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
       border: 3px solid #e0f2fe;
     }
-    .modal-box h2 {
-      font-size: 20px;
-      color: #0284c7;
-      margin-bottom: 6px;
-    }
-    .modal-box p {
-      font-size: 13px;
-      color: #64748b;
-      margin-bottom: 16px;
-      line-height: 1.4;
-    }
+    .modal-box h2 { font-size: 20px; color: #0284c7; margin-bottom: 6px; }
+    .modal-box p { font-size: 13px; color: #64748b; margin-bottom: 16px; line-height: 1.4; }
     .passcode-input {
       width: 100%;
       padding: 12px;
@@ -638,33 +608,13 @@
       margin-top: 10px;
       cursor: pointer;
     }
-    .error-msg {
-      color: #ef4444;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      display: none;
-    }
+    .error-msg { color: #ef4444; font-size: 12px; font-weight: 700; margin-bottom: 8px; display: none; }
 
     /* MOBILE RESPONSIVE RULES */
     @media (max-width: 768px) {
-      body {
-        height: auto;
-        min-height: 100vh;
-        overflow-y: auto;
-      }
-      header {
-        padding: 8px 12px;
-        position: sticky;
-        top: 0;
-      }
-      .main-workspace {
-        flex-direction: column;
-        height: auto;
-        padding: 8px;
-        gap: 10px;
-        overflow: visible;
-      }
+      body { height: auto; min-height: 100vh; overflow-y: auto; }
+      header { padding: 8px 12px; position: sticky; top: 0; }
+      .main-workspace { flex-direction: column; height: auto; padding: 8px; gap: 10px; overflow: visible; }
       .sidebar-left {
         width: 100%;
         flex-direction: row;
@@ -676,35 +626,12 @@
       }
       .sidebar-title { display: none; }
       .item-btn { padding: 6px 12px; flex-shrink: 0; }
-      .canvas-card {
-        width: 100%;
-        height: 360px;
-        padding: 6px;
-        border-radius: 16px;
-      }
-      #paintCanvas {
-        max-width: 340px;
-        max-height: 340px;
-      }
-      .sidebar-right {
-        width: 100%;
-        flex-direction: column;
-        padding: 12px;
-        gap: 12px;
-        border-radius: 16px;
-      }
-      .tools-list {
-        flex-direction: row;
-        justify-content: space-between;
-      }
+      .canvas-card { width: 100%; height: 360px; padding: 6px; border-radius: 16px; }
+      #paintCanvas { max-width: 340px; max-height: 340px; }
+      .sidebar-right { width: 100%; flex-direction: column; padding: 12px; gap: 12px; border-radius: 16px; }
+      .tools-list { flex-direction: row; justify-content: space-between; }
       .tool-btn { flex: 1; padding: 8px; font-size: 12px; }
-      .color-palette {
-        display: flex;
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 10px;
-        padding: 4px 2px;
-      }
+      .color-palette { display: flex; overflow-x: auto; justify-content: flex-start; gap: 10px; padding: 4px 2px; }
       .color-swatch { width: 34px; height: 34px; flex-shrink: 0; }
       .match-board { gap: 16px; }
     }
@@ -726,6 +653,7 @@
         <button class="tab-btn active" id="tabColoring">🎨 Coloring</button>
         <button class="tab-btn" id="tabBusy">📚 Busy Books</button>
         <button class="tab-btn" id="tabABC">🔤 ABCs</button>
+        <button class="tab-btn" id="tabTrace">✍️ Tracing</button>
         <button class="tab-btn" id="tabBubble">🫧 Bubble Pop</button>
         <button class="tab-btn" id="tabMatch">🧩 Match</button>
         <button class="tab-btn" id="tabProgress">⭐ Progress</button>
@@ -743,7 +671,6 @@
        VIEW 1: COLORING & BUSY BOOKS WORKSPACE
   ========================================================= -->
   <div class="main-workspace" id="coloringWorkspace">
-    <!-- LEFT SIDEBAR -->
     <div class="sidebar-left" id="sidebarFruits">
       <div class="sidebar-title">🍎 Fruits</div>
       <button class="item-btn active" data-item="apple"><span class="item-label"><span class="emoji">🍎</span> Apple</span> <span class="lock-icon" style="color:#22c55e;">FREE</span></button>
@@ -759,7 +686,6 @@
       <button class="item-btn" data-item="papaya"><span class="item-label"><span class="emoji">🍈</span> Papaya</span> <span class="lock-icon">🔒</span></button>
     </div>
 
-    <!-- BUSY BOOKS SIDEBAR -->
     <div class="sidebar-left" id="sidebarBusy" style="display: none;">
       <div class="sidebar-title">📚 Activities</div>
       <button class="item-btn" data-item="princess"><span class="item-label"><span class="emoji">👑</span> Princess</span> <span class="lock-icon">🔒</span></button>
@@ -769,12 +695,10 @@
       <button class="item-btn" data-item="face"><span class="item-label"><span class="emoji">🐻</span> Draw Face</span> <span class="lock-icon">🔒</span></button>
     </div>
 
-    <!-- CENTER CANVAS AREA -->
     <div class="canvas-card">
       <canvas id="paintCanvas" width="600" height="600"></canvas>
     </div>
 
-    <!-- RIGHT CONTROLS -->
     <div class="sidebar-right">
       <div>
         <div class="tool-group-title">Tools</div>
@@ -838,7 +762,39 @@
   </div>
 
   <!-- =========================================================
-       VIEW 3: BUBBLE POP GAME
+       VIEW 3: INTERACTIVE LETTER TRACING (Aa - Zz)
+  ========================================================= -->
+  <div class="learning-container" id="traceWorkspace">
+    <div class="section-card">
+      <div class="section-header">
+        <h2>✍️ Letter Tracing Practice (Aa – Zz)</h2>
+        <p>Bakatin ang malaki at maliit na letra gamit ang iyong daliri o mouse! (Aa, Bb, Cc are FREE)</p>
+      </div>
+
+      <div class="trace-layout">
+        <div class="trace-letter-bar" id="traceLetterBar"></div>
+
+        <div class="trace-canvas-wrap">
+          <canvas id="traceCanvas" width="560" height="340"></canvas>
+        </div>
+
+        <div class="trace-controls">
+          <div class="trace-swatch active" style="background:#0284c7;" data-tcolor="#0284c7"></div>
+          <div class="trace-swatch" style="background:#ef4444;" data-tcolor="#ef4444"></div>
+          <div class="trace-swatch" style="background:#22c55e;" data-tcolor="#22c55e"></div>
+          <div class="trace-swatch" style="background:#f97316;" data-tcolor="#f97316"></div>
+          <div class="trace-swatch" style="background:#8b5cf6;" data-tcolor="#8b5cf6"></div>
+
+          <button class="audio-btn" style="flex-direction:row; padding:8px 14px;" id="btnTraceSpeak">🔊 Hear Letter</button>
+          <button class="action-btn btn-print" id="btnTraceDone">⭐ I Finished Tracing!</button>
+          <button class="action-btn btn-clear" id="btnTraceClear">↺ Clear Trace</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       VIEW 4: BUBBLE POP GAME
   ========================================================= -->
   <div class="learning-container" id="bubbleWorkspace">
     <div class="section-card">
@@ -856,7 +812,7 @@
 
         <div class="bubbles-grid" id="bubblesGrid"></div>
 
-        <div style="display:flex; gap:10px; align-items:center;">
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center;">
           <span id="bubbleFeedback" style="font-weight:800; color:#0369a1; font-size:15px;">Tap a bubble to start!</span>
           <button class="action-btn btn-print" id="btnNextBubbleRound">Next Letter ➡️</button>
         </div>
@@ -865,7 +821,7 @@
   </div>
 
   <!-- =========================================================
-       VIEW 4: MATCH UPPERCASE & LOWERCASE
+       VIEW 5: MATCH UPPERCASE & LOWERCASE
   ========================================================= -->
   <div class="learning-container" id="matchWorkspace">
     <div class="section-card">
@@ -885,7 +841,7 @@
   </div>
 
   <!-- =========================================================
-       VIEW 5: PARENT PROGRESS DASHBOARD
+       VIEW 6: PARENT PROGRESS DASHBOARD
   ========================================================= -->
   <div class="learning-container" id="progressWorkspace">
     <div class="section-card">
@@ -905,7 +861,7 @@
         </div>
         <div class="stat-box">
           <div class="stat-num" id="statGames">0</div>
-          <div class="stat-label">🎮 Mini-Games Completed</div>
+          <div class="stat-label">🎮 Activities & Games Done</div>
         </div>
       </div>
 
@@ -928,7 +884,7 @@
     <div class="modal-box">
       <div style="font-size: 44px; margin-bottom: 8px;">🔐✨</div>
       <h2>Unlock PlayNest VIP Access</h2>
-      <p>Ilagay ang iyong <strong>Passcode</strong> mula sa iyong PlayNest Bundle purchase confirmation para ma-unlock ang lahat ng activities at A–Z games!</p>
+      <p>Ilagay ang iyong <strong>Passcode</strong> mula sa iyong PlayNest Bundle purchase confirmation para ma-unlock ang lahat ng activities, tracing, at A–Z games!</p>
       <div class="error-msg" id="passcodeError">Maling passcode. Pakisubukang muli!</div>
       <input type="text" id="passcodeInput" class="passcode-input" placeholder="PASSCODE" maxlength="20" autocomplete="off" />
       <button class="modal-btn-unlock" id="btnSubmitPasscode">Unlock All Now 🎉</button>
@@ -1038,8 +994,9 @@
         localStorage.setItem('playnest_unlocked', 'true');
         updateVIPUI();
         renderABCGrid();
+        renderTraceBar();
         unlockModal.style.display = 'none';
-        alert('🎉 Maligayang pagdating sa PlayNest VIP! Bukas na ang lahat ng prutas, busy books, at A–Z games.');
+        alert('🎉 Maligayang pagdating sa PlayNest VIP! Bukas na ang lahat ng prutas, busy books, tracing, at A–Z games.');
       } else {
         passcodeError.style.display = 'block';
       }
@@ -1050,6 +1007,7 @@
       coloring: document.getElementById('tabColoring'),
       busy: document.getElementById('tabBusy'),
       abc: document.getElementById('tabABC'),
+      trace: document.getElementById('tabTrace'),
       bubble: document.getElementById('tabBubble'),
       match: document.getElementById('tabMatch'),
       progress: document.getElementById('tabProgress')
@@ -1058,6 +1016,7 @@
     const views = {
       coloringWorkspace: document.getElementById('coloringWorkspace'),
       abcWorkspace: document.getElementById('abcWorkspace'),
+      traceWorkspace: document.getElementById('traceWorkspace'),
       bubbleWorkspace: document.getElementById('bubbleWorkspace'),
       matchWorkspace: document.getElementById('matchWorkspace'),
       progressWorkspace: document.getElementById('progressWorkspace')
@@ -1083,6 +1042,9 @@
         activeBusyBtn.click();
       } else if (activeKey === 'abc') {
         views.abcWorkspace.style.display = 'block';
+      } else if (activeKey === 'trace') {
+        views.traceWorkspace.style.display = 'block';
+        drawTraceGuide(currentTraceLetter);
       } else if (activeKey === 'bubble') {
         views.bubbleWorkspace.style.display = 'block';
         startBubbleRound();
@@ -1101,6 +1063,7 @@
       switchMainTab('busy');
     });
     tabs.abc.addEventListener('click', () => switchMainTab('abc'));
+    tabs.trace.addEventListener('click', () => switchMainTab('trace'));
     tabs.bubble.addEventListener('click', () => switchMainTab('bubble'));
     tabs.match.addEventListener('click', () => switchMainTab('match'));
     tabs.progress.addEventListener('click', () => switchMainTab('progress'));
@@ -1327,10 +1290,7 @@
     document.querySelectorAll('.item-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const itemKey = btn.getAttribute('data-item');
-        if (itemKey !== 'apple' && !isUnlocked) {
-          openUnlockModal();
-          return;
-        }
+        if (itemKey !== 'apple' && !isUnlocked) { openUnlockModal(); return; }
         const parentSidebar = btn.closest('.sidebar-left');
         parentSidebar.querySelectorAll('.item-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
@@ -1487,7 +1447,7 @@
       const grid = document.getElementById('abcGrid');
       grid.innerHTML = '';
       alphabetData.forEach((item, idx) => {
-        const isFree = idx < 3; // A, B, C are free
+        const isFree = idx < 3;
         const locked = !isFree && !isUnlocked;
         const isLearned = progressData.learnedLetters.includes(item.l);
 
@@ -1522,7 +1482,143 @@
     });
 
     // =========================================================
-    // MODULE 3: LETTER BUBBLE POP
+    // MODULE 3: INTERACTIVE LETTER TRACING (Aa - Zz)
+    // =========================================================
+    const traceCanvas = document.getElementById('traceCanvas');
+    const tCtx = traceCanvas.getContext('2d');
+    let currentTraceLetter = 'A';
+    let traceBrushColor = '#0284c7';
+    let isTracing = false;
+
+    function drawTraceGuide(letter) {
+      currentTraceLetter = letter;
+      tCtx.clearRect(0, 0, traceCanvas.width, traceCanvas.height);
+
+      // Primary school lined paper guides (top, middle dashed, bottom)
+      tCtx.save();
+      tCtx.lineWidth = 2;
+      tCtx.strokeStyle = '#bae6fd';
+      tCtx.beginPath();
+      tCtx.moveTo(30, 85); tCtx.lineTo(530, 85);
+      tCtx.moveTo(30, 265); tCtx.lineTo(530, 265);
+      tCtx.stroke();
+
+      tCtx.setLineDash([8, 8]);
+      tCtx.strokeStyle = '#fca5a5';
+      tCtx.beginPath();
+      tCtx.moveTo(30, 175); tCtx.lineTo(530, 175);
+      tCtx.stroke();
+      tCtx.restore();
+
+      // Dotted Uppercase & Lowercase Outline to Trace
+      tCtx.save();
+      tCtx.font = '900 185px "Comic Sans MS", "Chalkboard SE", sans-serif';
+      tCtx.textAlign = 'center';
+      tCtx.textBaseline = 'alphabetic';
+      tCtx.fillStyle = '#f1f5f9';
+      tCtx.fillText(`${letter} ${letter.toLowerCase()}`, 280, 260);
+
+      tCtx.lineWidth = 4;
+      tCtx.setLineDash([10, 8]);
+      tCtx.strokeStyle = '#64748b';
+      tCtx.strokeText(`${letter} ${letter.toLowerCase()}`, 280, 260);
+      tCtx.restore();
+    }
+
+    function renderTraceBar() {
+      const bar = document.getElementById('traceLetterBar');
+      bar.innerHTML = '';
+      alphabetData.forEach((item, idx) => {
+        const isFree = idx < 3;
+        const locked = !isFree && !isUnlocked;
+        const btn = document.createElement('button');
+        btn.className = `trace-pill ${item.l === currentTraceLetter ? 'active' : ''}`;
+        btn.innerHTML = `${item.l}${item.l.toLowerCase()} ${locked ? '🔒' : ''}`;
+        btn.addEventListener('click', () => {
+          if (locked) { openUnlockModal(); return; }
+          bar.querySelectorAll('.trace-pill').forEach(p => p.classList.remove('active'));
+          btn.classList.add('active');
+          drawTraceGuide(item.l);
+          speakText(`Trace letter ${item.l}`);
+        });
+        bar.appendChild(btn);
+      });
+    }
+
+    function getTraceCoords(e) {
+      const rect = traceCanvas.getBoundingClientRect();
+      const scaleX = traceCanvas.width / rect.width;
+      const scaleY = traceCanvas.height / rect.height;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
+    }
+
+    traceCanvas.addEventListener('mousedown', (e) => {
+      isTracing = true;
+      const { x, y } = getTraceCoords(e);
+      tCtx.beginPath(); tCtx.moveTo(x, y);
+    });
+    traceCanvas.addEventListener('mousemove', (e) => {
+      if (!isTracing) return;
+      const { x, y } = getTraceCoords(e);
+      tCtx.lineWidth = 16;
+      tCtx.lineCap = 'round';
+      tCtx.lineJoin = 'round';
+      tCtx.strokeStyle = traceBrushColor;
+      tCtx.lineTo(x, y); tCtx.stroke();
+    });
+    traceCanvas.addEventListener('mouseup', () => { isTracing = false; tCtx.closePath(); });
+    traceCanvas.addEventListener('mouseleave', () => { isTracing = false; });
+
+    traceCanvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      isTracing = true;
+      const { x, y } = getTraceCoords(e);
+      tCtx.beginPath(); tCtx.moveTo(x, y);
+    }, { passive: false });
+    traceCanvas.addEventListener('touchmove', (e) => {
+      if (!isTracing) return;
+      e.preventDefault();
+      const { x, y } = getTraceCoords(e);
+      tCtx.lineWidth = 16;
+      tCtx.lineCap = 'round';
+      tCtx.lineJoin = 'round';
+      tCtx.strokeStyle = traceBrushColor;
+      tCtx.lineTo(x, y); tCtx.stroke();
+    }, { passive: false });
+    traceCanvas.addEventListener('touchend', () => { isTracing = false; tCtx.closePath(); });
+
+    document.querySelectorAll('.trace-swatch').forEach(sw => {
+      sw.addEventListener('click', () => {
+        document.querySelectorAll('.trace-swatch').forEach(s => s.classList.remove('active'));
+        sw.classList.add('active');
+        traceBrushColor = sw.dataset.tcolor;
+      });
+    });
+
+    document.getElementById('btnTraceSpeak').addEventListener('click', () => {
+      const found = alphabetData.find(a => a.l === currentTraceLetter);
+      speakText(found ? `${found.l} is for ${found.w}` : currentTraceLetter);
+    });
+
+    document.getElementById('btnTraceClear').addEventListener('click', () => {
+      drawTraceGuide(currentTraceLetter);
+    });
+
+    document.getElementById('btnTraceDone').addEventListener('click', () => {
+      if (!progressData.learnedLetters.includes(currentTraceLetter)) {
+        progressData.learnedLetters.push(currentTraceLetter);
+        renderABCGrid();
+      }
+      progressData.gamesCompleted += 1;
+      addStar(2);
+      speakText(`Great job tracing letter ${currentTraceLetter}!`);
+      alert(`🌟 Great job! You earned +2 Stars for tracing ${currentTraceLetter}${currentTraceLetter.toLowerCase()}!`);
+    });
+
+    // =========================================================
+    // MODULE 4: LETTER BUBBLE POP
     // =========================================================
     let targetBubbleLetter = 'A';
     let remainingTargets = 0;
@@ -1575,7 +1671,7 @@
     document.getElementById('btnNextBubbleRound').addEventListener('click', startBubbleRound);
 
     // =========================================================
-    // MODULE 4: MATCH BIG & SMALL LETTERS
+    // MODULE 5: MATCH BIG & SMALL LETTERS
     // =========================================================
     let selectedUpper = null;
     let matchedCount = 0;
@@ -1659,6 +1755,8 @@
     updateVIPUI();
     updateProgressUI();
     renderABCGrid();
+    renderTraceBar();
+    drawTraceGuide('A');
     loadItem('apple');
   </script>
 </body>
