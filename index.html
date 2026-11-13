@@ -996,7 +996,6 @@
         renderABCGrid();
         renderTraceBar();
         unlockModal.style.display = 'none';
-        alert('🎉 Maligayang pagdating sa PlayNest VIP! Bukas na ang lahat ng prutas, busy books, tracing, at A–Z games.');
       } else {
         passcodeError.style.display = 'block';
       }
@@ -1494,7 +1493,7 @@
       currentTraceLetter = letter;
       tCtx.clearRect(0, 0, traceCanvas.width, traceCanvas.height);
 
-      // Primary school lined paper guides (top, middle dashed, bottom)
+      // Primary school lined paper guides
       tCtx.save();
       tCtx.lineWidth = 2;
       tCtx.strokeStyle = '#bae6fd';
@@ -1510,7 +1509,7 @@
       tCtx.stroke();
       tCtx.restore();
 
-      // Dotted Uppercase & Lowercase Outline to Trace
+      // Dotted Uppercase & Lowercase Outline
       tCtx.save();
       tCtx.font = '900 185px "Comic Sans MS", "Chalkboard SE", sans-serif';
       tCtx.textAlign = 'center';
@@ -1606,6 +1605,7 @@
       drawTraceGuide(currentTraceLetter);
     });
 
+    // NO POPUP CELEBRATION BADGE
     document.getElementById('btnTraceDone').addEventListener('click', () => {
       if (!progressData.learnedLetters.includes(currentTraceLetter)) {
         progressData.learnedLetters.push(currentTraceLetter);
@@ -1614,7 +1614,18 @@
       progressData.gamesCompleted += 1;
       addStar(2);
       speakText(`Great job tracing letter ${currentTraceLetter}!`);
-      alert(`🌟 Great job! You earned +2 Stars for tracing ${currentTraceLetter}${currentTraceLetter.toLowerCase()}!`);
+
+      let msgEl = document.getElementById('traceCelebrationMsg');
+      if (!msgEl) {
+        msgEl = document.createElement('div');
+        msgEl.id = 'traceCelebrationMsg';
+        msgEl.style.cssText = 'font-weight:800; color:#15803d; background:#dcfce7; border:2px solid #22c55e; padding:8px 18px; border-radius:20px; font-size:15px; margin-top:4px; transition:opacity 0.3s;';
+        document.querySelector('.trace-layout').appendChild(msgEl);
+      }
+      msgEl.textContent = `🌟 Great job! You earned +2 Stars for tracing ${currentTraceLetter}${currentTraceLetter.toLowerCase()}!`;
+      msgEl.style.opacity = '1';
+      clearTimeout(window.traceMsgTimer);
+      window.traceMsgTimer = setTimeout(() => { msgEl.style.opacity = '0'; }, 3000);
     });
 
     // =========================================================
